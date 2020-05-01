@@ -6,6 +6,28 @@ import pandas as pd
 import numpy as np
 from sklearn import tree
 
+BLACK = 0
+PURPLE = 1
+TAN = 2
+GREENISH = 3
+WHITE = 4
+
+
+#RED       : java.awt.Color[r=255, g=0,   b=0]
+#GREEN     : java.awt.Color[r=0,   g=255, b=0]
+#BLUE      : java.awt.Color[r=0,   g=0,   b=255]
+#YELLOW    : java.awt.Color[r=255, g=255, b=0]
+#MAGENTA   : java.awt.Color[r=255, g=0,   b=255]
+#CYAN      : java.awt.Color[r=0,   g=255, b=255]
+#WHITE     : java.awt.Color[r=255, g=255, b=255]
+#BLACK     : java.awt.Color[r=0,   g=0,   b=0]
+#GRAY      : java.awt.Color[r=128, g=128, b=128]
+#LIGHT_GRAY: java.awt.Color[r=192, g=192, b=192]
+#DARK_GRAY : java.awt.Color[r=64,  g=64,  b=64]
+#PINK      : java.awt.Color[r=255, g=175, b=175]
+#ORANGE    : java.awt.Color[r=255, g=200, b=0]
+
+
 # git add -u
 # git commit -m ""
 # git push origin master
@@ -15,15 +37,20 @@ df = pd.read_csv('capsicum.csv', sep=';')
 print(df.describe())
 print(df.head())
 
+print("Mats")
+print(pd.get_dummies("Mats"))
+print(pd.get_dummies("Pettersson"))
+
 #df = pd.DataFrame(data.data, columns=data.feature_names)
 #df['target'] = data.target
 #X_train, X_test, Y_train, Y_test = train_test_split(df[data.feature_names], df['target'], random_state=0)
-X_train, X_test, Y_train, Y_test = train_test_split(df, df, random_state=0)
+#X_train, X_test, Y_train, Y_test = train_test_split(df, df, random_state=0)
 
 # Step 2: Make an instance of the Model
 clf = DecisionTreeClassifier(max_depth = 2, random_state = 0)
 # Step 3: Train the model on the data
-clf.fit(X_train, Y_train)
+#clf.fit(X_train, Y_train)
+clf.fit(df['Seed colour']['Filament colour'], df['Corolla spots']['Flowers per node'])
 # Step 4: Predict labels of unseen (test) data
 # Not doing this step in the tutorial
 # clf.predict(X_test)
