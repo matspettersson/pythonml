@@ -1,8 +1,21 @@
-"Seed colour";"Corolla colour";"Corolla spots";"Flowers solitary";"Filament colour";"Flowers per node";"Name";"Genus";"Species"
-"0";"1";"0";"0";"";"1";"Rocoto";"Capsicum";"pubescens"
-"0";"1";"0";"0";"";"1";"Manzano";"Capsicum";"pubescens"
-"2";"";"1";"0";"";"3";"Peru yellow";"Capsicum";"baccatum"
-"2";"";"1";"0";"";"3";"Aji Amarillo";"Capsicum";"baccatum"
-"2";"";"1";"0";"";"3";"Dedo de moca";"Capsicum";"baccatum"
-"2";"3";"0";"1";"";"3";"Tabasco";"Capsicum";"frutescens"
-"2";"4";"0";"";"";"3";"Serrano";"Capsicum";"annuum"
+seed colour;corolla colour;corolla spots;flowers solitary;filament colour;flowers per node;name;genus;species
+Tan;white;no;;;3;Serrano;Capsicum;annuum
+Tan;white;no;;;3;Jalapeno;Capsicum;annuum
+Tan;white;no;;;3;Poblano;Capsicum;annuum
+Tan;white;no;;;3;Goatsweed;Capsicum;annuum
+Tan;white;no;;;3;Bell pepper;Capsicum;annuum
+Tan;white;no;;;3;Pequin;Capsicum;annuum
+Tan;;yes;no;;3;Peru yellow;Capsicum;baccatum
+Tan;;yes;no;;3;Aji Amarillo;Capsicum;baccatum
+Tan;;yes;no;;3;Dedo de moca;Capsicum;baccatum
+Tan;;yes;no;;3;Pimenta cambuci;Capsicum;baccatum
+Tan;;yes;no;;3;Aji limon;Capsicum;baccatum
+Tan;;yes;no;;3;habanero;Capsicum;chinense
+Tan;;yes;no;;3;cheiro;Capsicum;chinense
+Tan;;yes;no;;3;Trinidad scorpion;Capsicum;chinense
+Tan;;yes;no;;3;Bhut jolokia;Capsicum;chinense
+Tan;greenish;no;yes;;3;Tabasco;Capsicum;frutescens
+Tan;greenish;no;yes;;3;Malagueta;Capsicum;frutescens
+Tan;greenish;no;yes;;3;Malagueta small;Capsicum;frutescens
+Black;purple;no;no;;1;Rocoto;Capsicum;pubescens
+Black;purple;no;no;;1;Manzano;Capsicum;pubescens

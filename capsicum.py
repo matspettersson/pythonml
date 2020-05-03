@@ -2,30 +2,13 @@ import matplotlib.pyplot as plt
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
+from sklearn import tree
 import pandas as pd
 import numpy as np
 from sklearn import tree
-
-BLACK = 0
-PURPLE = 1
-TAN = 2
-GREENISH = 3
-WHITE = 4
-
-
-#RED       : java.awt.Color[r=255, g=0,   b=0]
-#GREEN     : java.awt.Color[r=0,   g=255, b=0]
-#BLUE      : java.awt.Color[r=0,   g=0,   b=255]
-#YELLOW    : java.awt.Color[r=255, g=255, b=0]
-#MAGENTA   : java.awt.Color[r=255, g=0,   b=255]
-#CYAN      : java.awt.Color[r=0,   g=255, b=255]
-#WHITE     : java.awt.Color[r=255, g=255, b=255]
-#BLACK     : java.awt.Color[r=0,   g=0,   b=0]
-#GRAY      : java.awt.Color[r=128, g=128, b=128]
-#LIGHT_GRAY: java.awt.Color[r=192, g=192, b=192]
-#DARK_GRAY : java.awt.Color[r=64,  g=64,  b=64]
-#PINK      : java.awt.Color[r=255, g=175, b=175]
-#ORANGE    : java.awt.Color[r=255, g=200, b=0]
+from IPython.display import Image  
+import pydotplus
+from io import StringIO
 
 
 # git add -u
@@ -37,20 +20,14 @@ df = pd.read_csv('capsicum.csv', sep=';')
 print(df.describe())
 print(df.head())
 
-print("Mats")
-print(pd.get_dummies("Mats"))
-print(pd.get_dummies("Pettersson"))
-
-#df = pd.DataFrame(data.data, columns=data.feature_names)
-#df['target'] = data.target
 #X_train, X_test, Y_train, Y_test = train_test_split(df[data.feature_names], df['target'], random_state=0)
 #X_train, X_test, Y_train, Y_test = train_test_split(df, df, random_state=0)
 
 # Step 2: Make an instance of the Model
-clf = DecisionTreeClassifier(max_depth = 2, random_state = 0)
+#clf = DecisionTreeClassifier(max_depth = 2, random_state = 0)
 # Step 3: Train the model on the data
 #clf.fit(X_train, Y_train)
-clf.fit(df['Seed colour']['Filament colour'], df['Corolla spots']['Flowers per node'])
+#clf.fit(df['Seed colour']['Filament colour'], df['Corolla spots']['Flowers per node'])
 # Step 4: Predict labels of unseen (test) data
 # Not doing this step in the tutorial
 # clf.predict(X_test)
@@ -63,3 +40,33 @@ clf.fit(df['Seed colour']['Filament colour'], df['Corolla spots']['Flowers per n
 #fig.savefig('capsicum.png')
 #tree.export_graphviz(clf, out_file="capsicum.dot", feature_names = fn, class_names=cn, filled = True)
 #tree.plot_tree(clf);
+#pd1 = pd.get_dummies(pd[ ['seed colour', 'corolla spots', 'flowers solitary', 'species'] ])
+df1 = pd.get_dummies(df[ ['seed colour', 'species'] ])
+
+#columns=["seed colour","corolla spots","flowers solitary","species", "name"])
+print(df1)
+
+# The decision tree classifier.
+clf = tree.DecisionTreeClassifier()
+clf_train = clf.fit(df1, df['species'])
+
+# Export/Print a decision tree in DOT format.
+#print(tree.export_graphviz(clf_train, None))
+
+#Create Dot Data
+#dot_data = tree.export_graphviz(clf_train, out_file=None, feature_names=list(one_hot_data.columns.values), 
+#                                class_names=['Not_Play', 'Play'], rounded=True, filled=True) #Gini decides which attribute/feature should be placed at the root node, which features will act as internal nodes or leaf nodes#Create Graph from DOT data
+#graph = pydotplus.graph_from_dot_data(dot_data)
+
+# Show graph
+#Image(graph.create_png("png"))
+
+
+dot_data = StringIO()
+tree.export_graphviz(clf, out_file=dot_data,feature_names=list(df1.columns.values))
+graph = pydotplus.graph_from_dot_data(dot_data.getvalue())
+graph.write_pdf("capsicum.pdf")
+graph.write_png("capsicum.png")
+
+#dot_data = tree.export_graphviz(clf_train, out_file=None, feature_names=list(one_hot_data.columns.values), 
+#                                class_names=['Not_Play', 'Play'], rounded=True, filled=True) #Gini decides which attribute/feature should be placed at the root node, which features will act as internal nodes or leaf nodes#Create Graph from DOT data
