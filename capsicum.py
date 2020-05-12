@@ -10,7 +10,8 @@ from sklearn import tree
 from IPython.display import Image  
 import pydotplus
 from io import StringIO
-
+#import pickle
+from joblib import dump, load
 
 # git add -u
 # git commit -m ""
@@ -19,57 +20,42 @@ from io import StringIO
 
 filename = 'capsicum.csv'
 
-df = pd.read_csv(filename, sep=';')
+def capsicum(filename):
+   df = pd.read_csv(filename, sep=';')
+   print('*** df ***')
+   print(df.describe())
+   print(df.head(18))
 
-# I won't use these columns in the first version
-df1 = df.drop(['flowers solitary','filament colour','flowers per node','genus','name'], axis=1)
-df.drop(['filament colour'], axis=1)
-df.drop(['flowers per node'], axis=1)
-df.drop(['genus'], axis=1)
-df.drop(['name'], axis=1)
+   df1 = pd.get_dummies(df['seed colour'],['corolla colour'],['corolla spots'],['flowers solitary'],['name'],['genus'],['species'] )
+   #['filament colour'],['flowers per node'],
+   #   df.drop(['flowers solitary','filament colour','flowers per node','genus','name'], axis=1)
+   print('*** df1 ***')
+   #print(df1.describe())
+   print(df1.head(18))
 
-print(df1.describe())
-print(df1.head())
+   clf = DecisionTreeClassifier(criterion='entropy',random_state=0)
+   clf_train = clf.fit(df1, df['seed colour'])
 
-# Step 2: Make an instance of the Model
-#clf = DecisionTreeClassifier(max_depth = 2, random_state = 0)
-clf = DecisionTreeClassifier()
-df2 = pd.get_dummies(df1['seed colour'],['corolla colour'],['corolla spots'],['species'])
-print('*** Step 2 ***')
-print(df2.describe())
-print(df2.head())
+   #X_train, X_test, Y_train, Y_test = train_test_split(df2, df2, random_state=10)
+   # Step 3: Train the model on the data
+   #clf.fit(X_train, Y_train)
+   
+   #y_pred = clf_train.predict(X_test)
+   #print(y_pred)
+   # Export/Print a decision tree in DOT format.
+   dot_data = StringIO()
+   tree.export_graphviz(clf_train, out_file=dot_data,feature_names=list(df1.columns.values), class_names=['abc', 'def'], rounded=True, filled=True)
+   graph = pydotplus.graph_from_dot_data(dot_data.getvalue())
+   graph.write_png("capsicum.png")
+
+   #s = pickle.dumps(clf_train)
+   dump(clf_train, 'capsicum.joblib') 
+   #clf2 = pickle.loads(s)
+   #clf2.predict(X[0:1])
 
 
-clf_train = clf.fit(df1, df1)
+def main():
+   capsicum(filename)
 
-X_train, X_test, Y_train, Y_test = train_test_split(df1, df1, random_state=0)
-
-# Step 3: Train the model on the data
-#clf.fit(X_train, Y_train)
-#clf.fit(df['Seed colour']['Filament colour'], df['Corolla spots']['Flowers per node'])
-# Step 4: Predict labels of unseen (test) data
-
-
-print("DF")
-print(df.describe())
-print(df.head())
-print("DF1")
-print(df1.describe())
-print(df1.head())
-print("X_train")
-print(X_train.describe())
-print(X_train.head())
-
-print("Y_train")
-print(Y_train.describe())
-print(Y_train.head())
-
-clf_train = clf.fit(X_train, Y_train)
-# Export/Print a decision tree in DOT format.
-dot_data = StringIO()
-tree.export_graphviz(clf_train, out_file=dot_data,feature_names=list(df1.columns.values))
-graph = pydotplus.graph_from_dot_data(dot_data.getvalue())
-graph.write_png("capsicum.png")
-
-#dot_data = tree.export_graphviz(clf_train, out_file=None, feature_names=list(one_hot_data.columns.values), 
-#                                class_names=['Not_Play', 'Play'], rounded=True, filled=True) #Gini decides which attribute/feature should be placed at the root node, which features will act as internal nodes or leaf nodes#Create Graph from DOT data
+if __name__ == "__main__":
+    main()
