@@ -20,13 +20,26 @@ from io import StringIO
 filename = 'capsicum.csv'
 
 df = pd.read_csv(filename, sep=';')
-print(df.describe())
-print(df.head())
+
+# I won't use these columns in the first version
+df1 = df.drop(['flowers solitary','filament colour','flowers per node','genus','name'], axis=1)
+df.drop(['filament colour'], axis=1)
+df.drop(['flowers per node'], axis=1)
+df.drop(['genus'], axis=1)
+df.drop(['name'], axis=1)
+
+print(df1.describe())
+print(df1.head())
 
 # Step 2: Make an instance of the Model
 #clf = DecisionTreeClassifier(max_depth = 2, random_state = 0)
 clf = DecisionTreeClassifier()
-df1 = pd.get_dummies(df['seed colour'],['species'])
+df2 = pd.get_dummies(df1['seed colour'],['corolla colour'],['corolla spots'],['species'])
+print('*** Step 2 ***')
+print(df2.describe())
+print(df2.head())
+
+
 clf_train = clf.fit(df1, df1)
 
 X_train, X_test, Y_train, Y_test = train_test_split(df1, df1, random_state=0)
