@@ -1,21 +1,23 @@
 seed colour;corolla colour;corolla spots;flowers solitary;filament colour;flowers per node;name;genus;species
-Tan;white;no;yes;;3;Serrano;Capsicum;annuum
-Tan;white;no;yes;;3;Jalapeno;Capsicum;annuum
-Tan;white;no;yes;;3;Poblano;Capsicum;annuum
-Tan;white;no;yes;;3;Goatsweed;Capsicum;annuum
-Tan;white;no;yes;;3;Bell pepper;Capsicum;annuum
-Tan;white;no;yes;;3;Pequin;Capsicum;annuum
-Tan;white;yes;no;;3;Peru yellow;Capsicum;baccatum
-Tan;white;yes;no;;3;Aji Amarillo;Capsicum;baccatum
-Tan;white;yes;no;;3;Dedo de moca;Capsicum;baccatum
-Tan;white;yes;no;;3;Pimenta cambuci;Capsicum;baccatum
-Tan;white;yes;no;;3;Aji limon;Capsicum;baccatum
-Tan;white;yes;no;;3;habanero;Capsicum;chinense
-Tan;white;yes;no;;3;cheiro;Capsicum;chinense
-Tan;white;yes;no;;3;Trinidad scorpion;Capsicum;chinense
-Tan;white;yes;no;;3;Bhut jolokia;Capsicum;chinense
-Tan;greenish;no;yes;;3;Tabasco;Capsicum;frutescens
-Tan;greenish;no;yes;;3;Malagueta;Capsicum;frutescens
-Tan;greenish;no;yes;;3;Malagueta small;Capsicum;frutescens
-Black;purple;no;no;;1;Rocoto;Capsicum;pubescens
-Black;purple;no;no;;1;Manzano;Capsicum;pubescens
+Tan;white;no;yes;tan;3;Serrano;Capsicum;annuum
+Tan;white;no;yes;tan;3;Jalapeno;Capsicum;annuum
+Tan;white;no;yes;tan;3;Poblano;Capsicum;annuum
+Tan;white;no;yes;tan;3;Goatsweed;Capsicum;annuum
+Tan;white;no;yes;tan;3;Bell pepper;Capsicum;annuum
+Tan;white;no;yes;tan;3;Pequin;Capsicum;annuum
+Tan;white;yes;no;tan;3;Peru yellow;Capsicum;baccatum
+Tan;white;yes;no;tan;3;Aji Amarillo;Capsicum;baccatum
+Tan;white;yes;no;tan;3;Dedo de moca;Capsicum;baccatum
+Tan;white;yes;no;tan;3;Pimenta cambuci;Capsicum;baccatum
+Tan;white;yes;no;tan;3;Aji limon;Capsicum;baccatum
+Tan;white;yes;no;purple;2;habanero;Capsicum;chinense
+Tan;white;yes;no;purple;2;cheiro;Capsicum;chinense
+Tan;white;yes;no;purple;2;Trinidad scorpion;Capsicum;chinense
+Tan;white;yes;no;purple;2;Bhut jolokia;Capsicum;chinense
+Tan;greenish;no;yes;tan;3;Tabasco;Capsicum;frutescens
+Tan;greenish;no;yes;tan;3;Malagueta;Capsicum;frutescens
+Tan;greenish;no;yes;tan;3;Malagueta small;Capsicum;frutescens
+Black;purple;no;no;tan;1;Rocoto;Capsicum;pubescens
+Black;purple;no;no;tan;1;Manzano;Capsicum;pubescens
+Black;purple;no;no;tan;1;Canario;Capsicum;pubescens
+Black;purple;no;no;tan;1;Manzano;Capsicum;pubescens

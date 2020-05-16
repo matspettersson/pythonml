@@ -24,17 +24,24 @@ def capsicum(filename):
    df = pd.read_csv(filename, sep=';')
    print('*** df ***')
    print(df.describe())
-   print(df.head(18))
+   print(df.head(25))
 
-   df1 = pd.get_dummies(df['seed colour'],['corolla colour'],['corolla spots'],['flowers solitary'],['name'],['genus'],['species'] )
-   #['filament colour'],['flowers per node'],
-   #   df.drop(['flowers solitary','filament colour','flowers per node','genus','name'], axis=1)
-   print('*** df1 ***')
-   #print(df1.describe())
-   print(df1.head(18))
+   #dd1 = pd.get_dummies(df[['seed colour','corolla colour','corolla spots','flowers solitary','flowers per node','species' ] ] )
+   dd1 = pd.get_dummies(df[['seed colour','corolla colour','corolla spots','flowers solitary','flowers per node'] ] )
+   print('*** dd1 describe ***')
+   print(dd1.describe())
+   print('*** dd1 head ***')
+   print(dd1.head(25))
 
-   clf = DecisionTreeClassifier(criterion='entropy',random_state=0)
-   clf_train = clf.fit(df1, df['seed colour'])
+   
+   for col in dd1.columns: 
+      print(col) 
+   clf = DecisionTreeClassifier(criterion='gini',max_depth = 8, random_state=0)
+   #clf = DecisionTreeClassifier()
+   #clf_train = clf.fit(df1, df['seed colour']
+   # )
+   #clf_train = clf.fit(df1, df1['species'])
+   clf_train = clf.fit(dd1, df['species'])
 
    #X_train, X_test, Y_train, Y_test = train_test_split(df2, df2, random_state=10)
    # Step 3: Train the model on the data
@@ -44,7 +51,8 @@ def capsicum(filename):
    #print(y_pred)
    # Export/Print a decision tree in DOT format.
    dot_data = StringIO()
-   tree.export_graphviz(clf_train, out_file=dot_data,feature_names=list(df1.columns.values), class_names=['abc', 'def'], rounded=True, filled=True)
+   tree.export_graphviz(clf_train, out_file=dot_data,feature_names=list(dd1.columns.values),  rounded=True, filled=True)
+   #class_names=['species', 'name'],
    graph = pydotplus.graph_from_dot_data(dot_data.getvalue())
    graph.write_png("capsicum.png")
 
